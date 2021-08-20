@@ -16,7 +16,7 @@ export class RiskmComponent implements OnInit {
   shares = 0
   total = 0
 
-  riskreward = 2
+  riskreward = 2    
   newcapital = 0
 
   constructor() { }
