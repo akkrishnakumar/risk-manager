@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-riskm',
@@ -7,10 +8,11 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RiskmComponent implements OnInit {
 
+  capital = new FormControl(0)
+  entryprice = new FormControl(0)
+  stoploss = new FormControl(0)
+  
   tickers = "A"
-  capital = 0
-  entryprice = 0
-  stoploss = 0
   exit = 0
   risk = 0
   shares = 0
@@ -25,14 +27,14 @@ export class RiskmComponent implements OnInit {
   }
 
   public calculate(){
-    this.exit = (this.entryprice - this.stoploss) + this.entryprice
+    this.exit = (this.entryprice.value - this.stoploss.value)*2 + this.entryprice.value
     
-    this.risk = this.capital * 0.01
+    this.risk = this.capital.value * 0.01
   
-    this.shares = this.risk - (this.entryprice-this.stoploss)
+    this.shares = this.risk / (this.entryprice.value-this.stoploss.value)
 
-    this.total = this.entryprice * this.shares
+    this.total = this.entryprice.value * this.shares
 
-    this.newcapital = this.capital - this.total
+    this.newcapital = this.capital.value - this.total
   } 
 }
