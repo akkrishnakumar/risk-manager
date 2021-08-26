@@ -1,11 +1,11 @@
 <div class="container">
     <label>Enter Capital</label>
-    <input type="number" [formControl]="capital" >
-</div>
+    <input type="number" [formControl]="capital" />
 
-<br><br>
-
-<div class="container">
+    <i class="add bi bi-plus-circle-fill"></i>
+    <br><br>
+    
+  <div class="container">
     <div class="row">
       <div class="col">
         Ticker
@@ -72,7 +72,12 @@
         </div>
       </div>
 
+      
       <br><br>
       <button (click)="calculate()">CALCULATE</button>
+      
+</div>
 
-  </div>
+<div class="row">
+      <div class = "col" *ngFor = "let title1 of dynamicArray">
+    </div>

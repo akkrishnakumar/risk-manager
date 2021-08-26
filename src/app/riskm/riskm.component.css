@@ -1,8 +1,4 @@
-table th, table td{
-    text-align: center;
-    width: 200px;    
-}
-
-tbody tr:nth-child(even){
-    background: #e8e7e1;
+.add{
+    display: flex;
+    justify-content: flex-end;
 }
