@@ -1,32 +1,32 @@
 <div class="row">
     <div class="col">
-      tickers}}
+      {{ps.tickers}}
     </div>
     <div class="col">
-      capital.value | currency:"INR"}}
+      {{ps.capital | currency:"INR"}}
     </div>
     <div class="col">
-      risk}}
+      {{ps.risk}}
     </div>
     <div class="col">
-      21<!-- <input type="number" [formControl] = 'entryprice'>  -->
+       <input type="number" value = "ps.entryprice">
     </div>
     <div class="col">
-      11<!-- <input type="number" [formControl] = 'stoploss'> -->
+      <input type="number" value = 'ps.stoploss'>
     </div>
     <div class="col">
-        exit}}
+        {{ps.exit}}
     </div>
     <div class="col">
-        riskreward}}
+        {{ps.riskreward}}
     </div>
     <div class="col">
-        shares}}
+        {{ps.shares}}
     </div>
     <div class="col">
-        total}}
+        {{ps.total}}
     </div>
     <div class="col">
-        newcapital
+        {{ps.newcapital}}
     </div>
   </div>

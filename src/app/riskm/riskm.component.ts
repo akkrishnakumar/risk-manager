@@ -1,6 +1,6 @@
-import { RiskData } from './../models/risk-data';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { PositionSizing } from '../models/risk-data';
 
 @Component({
   selector: 'app-riskm',
@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 })
 export class RiskmComponent implements OnInit {
 
-  rows : Array<number> = []
+  rows : Array<PositionSizing> = []
 
   capital = new FormControl(0)
   entryprice = new FormControl(0)
@@ -42,6 +42,8 @@ export class RiskmComponent implements OnInit {
   }
 
   addRow(){
-    this.rows.push(1)
+    this.rows.push(
+      new PositionSizing("A",0,0,0,0,0,0,0,0,0)
+    )
   }
 }
