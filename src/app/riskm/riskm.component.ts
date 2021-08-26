@@ -1,3 +1,4 @@
+import { RiskData } from './../models/risk-data';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
@@ -7,6 +8,8 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./riskm.component.css']
 })
 export class RiskmComponent implements OnInit {
+
+  rows : Array<number> = []
 
   capital = new FormControl(0)
   entryprice = new FormControl(0)
@@ -36,5 +39,9 @@ export class RiskmComponent implements OnInit {
     this.total = this.entryprice.value * this.shares
 
     this.newcapital = this.capital.value - this.total
-  } 
+  }
+
+  addRow(){
+    this.rows.push(1)
+  }
 }

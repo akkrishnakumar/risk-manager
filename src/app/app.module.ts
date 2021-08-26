@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RiskmComponent } from './riskm/riskm.component';
 import { HeaderComponent } from './header/header.component';
+import { PsrowComponent } from './riskm/psrow/psrow.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RiskmComponent,
-    HeaderComponent
+    HeaderComponent,
+    PsrowComponent
   ],
   imports: [
     BrowserModule,

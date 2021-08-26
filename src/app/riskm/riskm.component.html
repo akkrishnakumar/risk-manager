@@ -2,7 +2,7 @@
     <label>Enter Capital</label>
     <input type="number" [formControl]="capital" />
 
-    <i class="add bi bi-plus-circle-fill"></i>
+    <i class="add bi bi-plus-circle-fill" (click)="addRow()"></i>
     <br><br>
     
   <div class="container">
@@ -38,46 +38,43 @@
         New Capital
       </div>
     </div>
-    <br>
     <div class="row">
-        <div class="col">
-          {{tickers}}
-        </div>
-        <div class="col">
-          {{capital.value | currency:"INR"}}
-        </div>
-        <div class="col">
-          {{risk}}
-        </div>
-        <div class="col">
-          <input type="number" [formControl] = 'entryprice'> 
-        </div>
-        <div class="col">
-          <input type="number" [formControl] = 'stoploss'>
-        </div>
-        <div class="col">
-            {{exit}}
-        </div>
-        <div class="col">
-            {{riskreward}}
-        </div>
-        <div class="col">
-            {{shares}}
-        </div>
-        <div class="col">
-            {{total}}
-        </div>
-        <div class="col">
-            {{newcapital}}
-        </div>
+      <div class="col">
+        {{tickers}}
       </div>
+      <div class="col">
+        {{capital.value | currency:"INR"}}
+      </div>
+      <div class="col">
+        {{risk}}
+      </div>
+      <div class="col">
+        <input type="number" [formControl] = 'entryprice'> 
+      </div>
+      <div class="col">
+        <input type="number" [formControl] = 'stoploss'>
+      </div>
+      <div class="col">
+          {{exit}}
+      </div>
+      <div class="col">
+          {{riskreward}}
+      </div>
+      <div class="col">
+          {{shares}}
+      </div>
+      <div class="col">
+          {{total}}
+      </div>
+      <div class="col">
+          {{newcapital}}
+      </div>
+    </div>
 
-      
-      <br><br>
-      <button (click)="calculate()">CALCULATE</button>
+    <br><br>
+    <app-psrow *ngFor="let row of rows"></app-psrow>
+
+    <br>
+    <button (click)="calculate()">CALCULATE</button>
       
 </div>
-
-<div class="row">
-      <div class = "col" *ngFor = "let title1 of dynamicArray">
-    </div>
