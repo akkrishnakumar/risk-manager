@@ -14,6 +14,7 @@ export class RiskmComponent implements OnInit {
   capital = new FormControl(0)
   entryprice = new FormControl(0)
   stoploss = new FormControl(0)
+  ps = new FormControl(0)
   
   tickers = "A"
   exit = 0
@@ -32,7 +33,7 @@ export class RiskmComponent implements OnInit {
   public calculate(){
     this.exit = (this.entryprice.value - this.stoploss.value)*2 + this.entryprice.value
     
-    this.risk = this.capital.value * 0.01
+    this.risk = this.capital.value * (this.ps.value/100)
   
     this.shares = this.risk / (this.entryprice.value-this.stoploss.value)
 

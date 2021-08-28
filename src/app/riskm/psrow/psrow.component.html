@@ -1,32 +1,32 @@
-<div class="psrow row">
-    <div class="col">
-      {{ps.tickers}}
+<!-- <div class = 'container'> -->
+  <div class="psrow row">
+      <div class="col-lg">
+        {{ps.tickers}}
+      </div>
+      <div class="col-lg">
+        {{ps.capital | currency:"INR"}}
+      </div>
+      <div class="col-lg">
+        {{ps.risk | currency : 'INR' }}
+      </div>
+      <div class="col-lg">
+        <input class="form-control input-sm" type="number" value = 'ps.entryprice'> 
+      </div>
+      <div class="col-lg">
+        <input class="form-control input-sm" type="number" value = 'ps.stoploss'>
+      </div>
+      <div class="col-lg">
+         {{ps.exit | currency : 'INR'}}
+      </div>
+      <div class="col-lg">
+         {{ps.riskreward}}
+      </div>
+      <div class="col-lg">
+          {{ps.shares}}
+      </div>
+      <div class="col-lg">
+          {{ps.total | currency : 'INR'}}
+      </div>
     </div>
-    <div class="col">
-      {{ps.capital | currency:"INR"}}
-    </div>
-    <div class="col">
-      {{ps.risk}}
-    </div>
-    <div class="col">
-       <input type="number" value = "ps.entryprice">
-    </div>
-    <div class="col">
-      <input type="number" value = 'ps.stoploss'>
-    </div>
-    <div class="col">
-        {{ps.exit}}
-    </div>
-    <div class="col">
-        {{ps.riskreward}}
-    </div>
-    <div class="col">
-        {{ps.shares}}
-    </div>
-    <div class="col">
-        {{ps.total}}
-    </div>
-    <div class="col">
-        {{ps.newcapital}}
-    </div>
-  </div>
+
+<!-- </div> -->

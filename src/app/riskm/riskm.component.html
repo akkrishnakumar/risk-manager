@@ -1,9 +1,10 @@
 <div class="container">
-    <label>Enter Capital</label>
-    <input type="number" [formControl]="capital" />
+    <label>Enter Capital :</label>
+    <input class="form-control input-sm" type="number" [formControl]="capital" />
 
     <div class="slide">
-      Percentage<mat-slide-toggle>Fixed</mat-slide-toggle>
+      Percentage <mat-slide-toggle> Fixed </mat-slide-toggle>
+      <input class = "form-control input-sm" type="number" [formControl] = "ps" />
     </div>
 
     <i class="add bi bi-plus-circle-fill" (click)="addRow()"></i>
@@ -11,74 +12,69 @@
     
   <div class="container">
     <div class="row">
-      <div class="col">
+      <div class="col-lg">
         Ticker
       </div>
-      <div class="col">
+      <div class="col-lg">
         Capital
       </div>
-      <div class="col">
+      <div class="col-lg">
         Risk
       </div>
-      <div class="col">
+      <div class="col-lg">
         Entry Price
       </div>
-      <div class="col">
+      <div class="col-lg">
         Stop Loss
       </div>
-      <div class="col">
+      <div class="col-lg">
         Exit
       </div>
-      <div class="col">
+      <div class="col-lg">
         Risk Reward Ratio
       </div>
-      <div class="col">
+      <div class="col-lg">
         Total Number Of Shares
       </div>
-      <div class="col">
+      <div class="col-lg">
         Total Amount
-      </div>
-      <div class="col">
-        New Capital
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        {{tickers}}
-      </div>
-      <div class="col">
-        {{capital.value | currency:"INR"}}
-      </div>
-      <div class="col">
-        {{risk}}
-      </div>
-      <div class="col">
-        <input type="number" [formControl] = 'entryprice'> 
-      </div>
-      <div class="col">
-        <input type="number" [formControl] = 'stoploss'>
-      </div>
-      <div class="col">
-          {{exit}}
-      </div>
-      <div class="col">
-          {{riskreward}}
-      </div>
-      <div class="col">
-          {{shares}}
-      </div>
-      <div class="col">
-          {{total}}
-      </div>
-      <div class="col">
-          {{newcapital}}
       </div>
     </div>
 
-    <br><br>
+    <div class="entry row">
+      <div class="col-lg">
+        {{tickers}}
+      </div>
+      <div class="col-lg">
+        {{capital.value | currency:"INR"}}
+      </div>
+      <div class="col-lg">
+        {{risk | currency : 'INR' }}
+      </div>
+      <div class="col-lg">
+        <input class="form-control input-sm" type="number" [formControl] = 'entryprice' /> 
+      </div>
+      <div class="col-lg">
+        <input class="form-control input-sm" type="number" [formControl] = 'stoploss'/>
+      </div>
+      <div class="col-lg">
+          {{exit | currency : 'INR'}}
+      </div>
+      <div class="col-lg">
+          {{riskreward}}
+      </div>
+      <div class="col-lg">
+          {{shares}}
+      </div>
+      <div class="col-lg">
+          {{total | currency : 'INR'}}
+      </div>
+
+    </div>
+
     <app-psrow *ngFor="let row of rows" [ps] = "row"></app-psrow>
 
     <br>
-    <button (click)="calculate()">CALCULATE</button>
-      
+    <button class = "btn btn-default" (click)="calculate()">CALCULATE</button>
+
 </div>

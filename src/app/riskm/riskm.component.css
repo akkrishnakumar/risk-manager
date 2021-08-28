@@ -2,3 +2,10 @@
     display: flex;
     justify-content: flex-end;
 }
+.slide{
+    white-space: pre;
+    margin: 10px 0;
+}
+.entry{
+    margin : 10px 0;
+}
