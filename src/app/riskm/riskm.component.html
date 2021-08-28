@@ -2,8 +2,13 @@
     <label>Enter Capital :</label>
     <input class="form-control input-sm" type="number" [formControl]="capital" />
 
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter Capital</mat-label>
+      <input matInput placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>
+
     <div class="slide">
-      Percentage <mat-slide-toggle> Fixed </mat-slide-toggle>
+      Percentage <mat-slide-toggle (click) = "toggle()"> Fixed </mat-slide-toggle>
       <input class = "form-control input-sm" type="number" [formControl] = "ps" />
     </div>
 

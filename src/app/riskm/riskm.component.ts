@@ -10,6 +10,7 @@ import { PositionSizing } from '../models/risk-data';
 export class RiskmComponent implements OnInit {
 
   rows : Array<PositionSizing> = []
+  fix : boolean = false
 
   capital = new FormControl(0)
   entryprice = new FormControl(0)
@@ -33,7 +34,11 @@ export class RiskmComponent implements OnInit {
   public calculate(){
     this.exit = (this.entryprice.value - this.stoploss.value)*2 + this.entryprice.value
     
-    this.risk = this.capital.value * (this.ps.value/100)
+    if(this.fix){
+      this.risk = this.ps.value
+    }else{
+      this.risk = this.capital.value * (this.ps.value/100)
+    }
   
     this.shares = this.risk / (this.entryprice.value-this.stoploss.value)
 
@@ -46,5 +51,10 @@ export class RiskmComponent implements OnInit {
     this.rows.push(
       new PositionSizing("A",0,0,0,0,0,0,0,0,0)
     )
+  }
+
+  toggle(){
+    this.fix = !this.fix
+    console.log(this.fix)
   }
 }
