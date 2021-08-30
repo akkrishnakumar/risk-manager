@@ -49,7 +49,7 @@ export class RiskmComponent implements OnInit {
 
   addRow(){
     this.rows.push(
-      new PositionSizing("A",0,0,0,0,0,0,0,0,0)
+      new PositionSizing("A",0,this.risk,0,0,0,0,this.newcapital,0,0)
     )
   }
 
