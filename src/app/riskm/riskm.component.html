@@ -2,10 +2,10 @@
     <label>Enter Capital :</label>
     <input class="form-control input-sm" type="number" [formControl]="capital" />
 
-    <mat-form-field class="example-full-width" appearance="fill">
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Enter Capital</mat-label>
       <input matInput placeholder="Ex. Pizza" value="Sushi">
-    </mat-form-field>
+    </mat-form-field> -->
 
     <div class="slide">
       Percentage <mat-slide-toggle (click) = "toggle()"> Fixed </mat-slide-toggle>
@@ -46,40 +46,9 @@
       </div>
     </div>
 
-    <div class="entry row">
-      <div class="col-lg">
-        {{tickers}}
-      </div>
-      <div class="col-lg">
-        {{capital.value | currency:"INR"}}
-      </div>
-      <div class="col-lg">
-        {{risk | currency : 'INR' }}
-      </div>
-      <div class="col-lg">
-        <input class="form-control input-sm" type="number" [formControl] = 'entryprice' /> 
-      </div>
-      <div class="col-lg">
-        <input class="form-control input-sm" type="number" [formControl] = 'stoploss'/>
-      </div>
-      <div class="col-lg">
-          {{exit | currency : 'INR'}}
-      </div>
-      <div class="col-lg">
-          {{riskreward}}
-      </div>
-      <div class="col-lg">
-          {{shares}}
-      </div>
-      <div class="col-lg">
-          {{total | currency : 'INR'}}
-      </div>
-
-    </div>
-
-    <app-psrow *ngFor="let row of rows" [ps] = "row"></app-psrow>
+    <app-psrow *ngFor="let row of rows; let i = index;" [ps] = "row" [index] = "i" (sendIndex) = "deleteRow($event)"></app-psrow>
 
     <br>
-    <button class = "btn btn-default" (click)="calculate()">CALCULATE</button>
+    <button class = "btn btn-default" (click)="calculate()">CALCULATE</button>    
 
 </div>

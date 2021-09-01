@@ -1,32 +1,32 @@
-<!-- <div class = 'container'> -->
-  <div class="psrow row">
-      <div class="col-lg">
-        {{ps.tickers}}
-      </div>
-      <div class="col-lg">
-        {{ps.capital | currency:"INR"}}
-      </div>
-      <div class="col-lg">
-        {{ps.risk | currency : 'INR' }}
-      </div>
-      <div class="col-lg">
-        <input class="form-control input-sm" type="number" value = 'ps.entryprice'> 
-      </div>
-      <div class="col-lg">
-        <input class="form-control input-sm" type="number" value = 'ps.stoploss'>
-      </div>
-      <div class="col-lg">
-         {{ps.exit | currency : 'INR'}}
-      </div>
-      <div class="col-lg">
-         {{ps.riskreward}}
-      </div>
-      <div class="col-lg">
-          {{ps.shares}}
-      </div>
-      <div class="col-lg">
-          {{ps.total | currency : 'INR'}}
-      </div>
+<div class="psrow row">
+  <div class="col-lg">
+    {{ps.tickers}}
+  </div>
+  <div class="col-lg">
+    {{ps.capital | currency:"INR"}}
+  </div>
+  <div class="col-lg">
+    {{ps.risk | currency : 'INR' }}
+  </div>
+  <div class="col-lg">
+    <input class="form-control input-sm" type="number" value = 'ps.entryprice'> 
+  </div>
+  <div class="col-lg">
+    <input class="form-control input-sm" type="number" value = 'ps.stoploss'>
+  </div>
+  <div class="col-lg">
+     {{ps.exit | currency : 'INR'}}
+  </div>
+  <div class="col-lg">
+     {{ps.riskreward}}
+  </div>
+  <div class="col-lg">
+      {{ps.shares}}
+  </div>
+  <div class="col-lg">
+      {{ps.total | currency : 'INR'}}
+  </div>
+  <div class = "col-lg">
+    <i class="bi bi-trash-fill" (click) = "sendDelete()"></i>
+  </div>
     </div>
-
-<!-- </div> -->

@@ -29,6 +29,7 @@ export class RiskmComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.addRow()
   }
 
   public calculate(){
@@ -49,12 +50,17 @@ export class RiskmComponent implements OnInit {
 
   addRow(){
     this.rows.push(
-      new PositionSizing("A",0,this.risk,0,0,0,0,this.newcapital,0,0)
+      new PositionSizing("A",0,this.risk,0,0,2,0,this.newcapital,0,0)
     )
   }
 
   toggle(){
     this.fix = !this.fix
     console.log(this.fix)
+  }
+
+  deleteRow(sendIndex : number){
+    this.rows.splice(sendIndex,1)
+    console.log(this.rows)
   }
 }

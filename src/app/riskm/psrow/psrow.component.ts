@@ -1,18 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PositionSizing } from 'src/app/models/risk-data';
 
 @Component({
   selector: 'app-psrow',
   templateUrl: './psrow.component.html',
-  styleUrls: ['./psrow.component.css']
+  styleUrls: ['./psrow.component.css'],
 })
 export class PsrowComponent implements OnInit {
+  @Input() ps: PositionSizing
+  @Input() index : number
 
-  @Input() ps : PositionSizing 
+  @Output() sendIndex = new EventEmitter<number>()
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  sendDelete(){
+    this.sendIndex.emit(this.index)
+    console.log(this.index)
   }
-
 }
