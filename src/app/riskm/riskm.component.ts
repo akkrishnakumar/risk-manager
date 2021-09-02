@@ -5,62 +5,81 @@ import { PositionSizing } from '../models/risk-data';
 @Component({
   selector: 'app-riskm',
   templateUrl: './riskm.component.html',
-  styleUrls: ['./riskm.component.css']
+  styleUrls: ['./riskm.component.css'],
 })
 export class RiskmComponent implements OnInit {
+  rows: Array<PositionSizing> = [];
+  fix: boolean = false;
 
-  rows : Array<PositionSizing> = []
-  fix : boolean = false
+  capital: number = 10000;
+  riskType: boolean = false; // when false -> percent, when true -> fixed amt
+  riskAmt: number = 2;
 
-  capital = new FormControl(0)
-  entryprice = new FormControl(0)
-  stoploss = new FormControl(0)
-  ps = new FormControl(0)
-  
-  tickers = "A"
-  exit = 0
-  risk = 0
-  shares = 0
-  total = 0
-
-  riskreward = 2    
-  newcapital = 0
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.addRow()
+    this.addRow();
   }
 
-  public calculate(){
-    this.exit = (this.entryprice.value - this.stoploss.value)*2 + this.entryprice.value
-    
-    if(this.fix){
-      this.risk = this.ps.value
-    }else{
-      this.risk = this.capital.value * (this.ps.value/100)
-    }
-  
-    this.shares = this.risk / (this.entryprice.value-this.stoploss.value)
-
-    this.total = this.entryprice.value * this.shares
-
-    this.newcapital = this.capital.value - this.total
+  public calculate() {
+    // this.rows.map((ele, i, arr) => {
+    //   // ele.stoploss = this.stoploss.value
+    //   // ele
+    //   ele.exit = (ele.entryprice - ele.stoploss)*2 + ele.entryprice
+    //   if(this.fix){
+    //     ele.risk = this.ps.value
+    //   }else{
+    //     ele.risk = ele.capital * (this.ps.value/100)
+    //   }
+    //   ele.shares = ele.risk / (ele.entryprice-ele.stoploss)
+    //   ele.total = ele.entryprice * ele.shares
+    // })
   }
 
-  addRow(){
+  addRow() {
     this.rows.push(
-      new PositionSizing("A",0,this.risk,0,0,2,0,this.newcapital,0,0)
-    )
+      new PositionSizing('A', 0, 0, 0, 0, 2, 0, this.capital, 0, 0)
+    );
+    this.reCalculate()
   }
 
-  toggle(){
-    this.fix = !this.fix
-    console.log(this.fix)
+  toggleRiskType(event) {
+    this.riskType = event.checked;
+    this.updateRiskAmt(0);
   }
 
-  deleteRow(sendIndex : number){
-    this.rows.splice(sendIndex,1)
-    console.log(this.rows)
+  deleteRow(sendIndex: number) {
+    this.rows.splice(sendIndex, 1);
+    console.log(this.rows);
+  }
+
+  updateRiskAmt(amount: number) {
+    this.riskAmt = amount;
+    this.reCalculate();
+  }
+
+  updateCapital(event) {
+    this.capital = parseInt(event.target.value);
+    console.log(this.capital, event.target.value);
+    this.reCalculate();
+  }
+
+  reCalculate() {
+    this.rows.map((ele, i, arr) => {
+      if (i === 0) ele.capital = this.capital;
+      else {
+        const prevEle = arr[i - 1];
+        ele.capital = prevEle.capital - prevEle.total;
+      }
+
+      this.riskType == true
+        ? (ele.risk = this.riskAmt)
+        : (ele.risk = this.capital * (this.riskAmt / 100));
+
+      if (ele.entryprice != 0) {
+        ele.shares = ele.risk / (ele.entryprice - ele.stoploss);
+        ele.total = ele.shares * ele.entryprice;
+      }
+    });
   }
 }
