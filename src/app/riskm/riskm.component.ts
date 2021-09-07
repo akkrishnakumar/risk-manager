@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { PositionSizing } from '../models/risk-data';
@@ -9,9 +10,7 @@ import { PositionSizing } from '../models/risk-data';
 })
 export class RiskmComponent implements OnInit {
   rows: Array<PositionSizing> = [];
-  fix: boolean = false;
-
-  capital: number = 10000;
+  capital: number = 100000;
   riskType: boolean = false; // when false -> percent, when true -> fixed amt
   riskAmt: number = 2;
 
@@ -21,36 +20,20 @@ export class RiskmComponent implements OnInit {
     this.addRow();
   }
 
-  public calculate() {
-    // this.rows.map((ele, i, arr) => {
-    //   // ele.stoploss = this.stoploss.value
-    //   // ele
-    //   ele.exit = (ele.entryprice - ele.stoploss)*2 + ele.entryprice
-    //   if(this.fix){
-    //     ele.risk = this.ps.value
-    //   }else{
-    //     ele.risk = ele.capital * (this.ps.value/100)
-    //   }
-    //   ele.shares = ele.risk / (ele.entryprice-ele.stoploss)
-    //   ele.total = ele.entryprice * ele.shares
-    // })
-  }
-
   addRow() {
     this.rows.push(
       new PositionSizing('A', 0, 0, 0, 0, 2, 0, this.capital, 0, 0)
     );
-    this.reCalculate()
+    this.reCalculate();
+  }
+
+  deleteRow(sendIndex: number) {
+    this.rows.splice(sendIndex, 1);
   }
 
   toggleRiskType(event) {
     this.riskType = event.checked;
     this.updateRiskAmt(0);
-  }
-
-  deleteRow(sendIndex: number) {
-    this.rows.splice(sendIndex, 1);
-    console.log(this.rows);
   }
 
   updateRiskAmt(amount: number) {
@@ -60,7 +43,20 @@ export class RiskmComponent implements OnInit {
 
   updateCapital(event) {
     this.capital = parseInt(event.target.value);
-    console.log(this.capital, event.target.value);
+    this.reCalculate();
+  }
+
+  entryPriceUpdated(event, i: number) {
+    const entrow = this.rows.find((_, index) => index === i);
+    entrow.entryprice = event;
+    this.rows.splice(i, 1, entrow);
+    this.reCalculate();
+  }
+
+  stopLossUpdated(event, i: number) {
+    const stoprow = this.rows.find((_, index) => index === i);
+    stoprow.stoploss = event;
+    this.rows.splice(i, 1, stoprow);
     this.reCalculate();
   }
 
@@ -76,9 +72,13 @@ export class RiskmComponent implements OnInit {
         ? (ele.risk = this.riskAmt)
         : (ele.risk = this.capital * (this.riskAmt / 100));
 
-      if (ele.entryprice != 0) {
+      if (ele.entryprice != 0 && ele.stoploss != 0) {
         ele.shares = ele.risk / (ele.entryprice - ele.stoploss);
         ele.total = ele.shares * ele.entryprice;
+
+        const diff = ele.entryprice - ele.stoploss;
+        ele.exit = diff * 2;
+        // ele.exit = ele.entryprice
       }
     });
   }

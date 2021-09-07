@@ -10,14 +10,24 @@ export class PsrowComponent implements OnInit {
   @Input() ps: PositionSizing
   @Input() index : number
 
-  @Output() sendIndex = new EventEmitter<number>()
+  @Output() rowIndex = new EventEmitter<number>()
+  @Output() entPrc = new EventEmitter<number>()
+  @Output() stplos = new EventEmitter<number>()
 
   constructor() {}
 
   ngOnInit(): void {}
 
   sendDelete(){
-    this.sendIndex.emit(this.index)
-    console.log(this.index)
+    this.rowIndex.emit(this.index)
   }
+
+  updateEntryPrice(event){
+    this.entPrc.emit(event.target.value)
+  }
+
+  updateStopLoss(event){
+    this.stplos.emit(event.target.value)
+  }
+
 }

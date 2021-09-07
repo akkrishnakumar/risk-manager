@@ -1,32 +1,32 @@
 <div class="psrow row">
   <div class="col-lg">
-    {{ps.tickers}}
+    {{ ps.tickers }}
   </div>
   <div class="col-lg">
-    {{ps.capital | currency:"INR"}}
+    {{ ps.capital | currency: "INR" }}
   </div>
   <div class="col-lg">
-    {{ps.risk | currency : 'INR' }}
+    {{ ps.risk | currency: "INR" }}
   </div>
   <div class="col-lg">
-    <input class="form-control input-sm" type="number" value = 'ps.entryprice'> 
+    <input class="form-control input-sm" type="number" value="ps.entryprice" (change)="updateEntryPrice($event)"/>
   </div>
   <div class="col-lg">
-    <input class="form-control input-sm" type="number" value = 'ps.stoploss'>
+    <input class="form-control input-sm" type="number" value="ps.stoploss" (change)="updateStopLoss($event)" />
   </div>
   <div class="col-lg">
-     {{ps.exit | currency : 'INR'}}
+    {{ ps.exit | currency: "INR" }}
   </div>
   <div class="col-lg">
-     {{ps.riskreward}}
+    {{ ps.riskreward }}
   </div>
   <div class="col-lg">
-      {{ps.shares}}
+    {{ ps.shares }}
   </div>
   <div class="col-lg">
-      {{ps.total | currency : 'INR'}}
+    {{ ps.total | currency: "INR" }}
   </div>
-  <div class = "col-lg">
-    <i class="bi bi-trash-fill" (click) = "sendDelete()"></i>
-  </div>
-    </div>
+</div>
+<div class="trash">
+  <i class="bi bi-trash-fill" (click)="sendDelete()"></i>
+</div>

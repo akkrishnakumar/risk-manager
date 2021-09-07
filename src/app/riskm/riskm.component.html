@@ -1,58 +1,53 @@
 <div class="container">
-    <label>Enter Capital :</label>
-    <input class="form-control input-sm" type="number" [value] = "capital" (change) = "updateCapital($event)" />
+  <label>Enter Capital :</label>
+  <input
+    class="form-control input-sm"
+    type="number"
+    [value]="capital"
+    (change)="updateCapital($event)"
+  />
 
-    <!-- <mat-form-field class="example-full-width" appearance="fill">
+  <!-- <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Enter Capital</mat-label>
       <input matInput placeholder="Ex. Pizza" value="Sushi">
     </mat-form-field> -->
 
-    <div class="slide">
-      Percentage <mat-slide-toggle [checked] = "riskType" (change) = "toggleRiskType($event)"> Fixed </mat-slide-toggle>
-      <input class = "form-control input-sm" type="number" [value] = "riskAmt" (change)= "updateRiskAmt($event.target.value)" />
-    </div>
+  <div class="slide">
+    Percentage
+    <mat-slide-toggle [checked]="riskType" (change)="toggleRiskType($event)">
+      Fixed
+    </mat-slide-toggle>
+    <input
+      class="form-control input-sm"
+      type="number"
+      [value]="riskAmt"
+      (change)="updateRiskAmt($event.target.value)"
+    />
+  </div>
 
-    <i class="add bi bi-plus-circle-fill" (click)="addRow()"></i>
-    <br><br>
-    
-    <div class="container">
+  <i class="add bi bi-plus-circle-fill" (click)="addRow()"></i>
+  <br /><br />
+
+  <div class="container">
     <div class="row">
-      <div class="col-lg">
-        Ticker
-      </div>
-      <div class="col-lg">
-        Capital
-      </div>
-      <div class="col-lg">
-        Risk
-      </div>
-      <div class="col-lg">
-        Entry Price
-      </div>
-      <div class="col-lg">
-        Stop Loss
-      </div>
-      <div class="col-lg">
-        Exit
-      </div>
-      <div class="col-lg">
-        Risk Reward Ratio
-      </div>
-      <div class="col-lg">
-        Total Number Of Shares
-      </div>
-      <div class="col-lg">
-        Total Amount
-      </div>
+      <div class="col-lg">Ticker</div>
+      <div class="col-lg">Capital</div>
+      <div class="col-lg">Risk</div>
+      <div class="col-lg">Entry Price</div>
+      <div class="col-lg">Stop Loss</div>
+      <div class="col-lg">Exit</div>
+      <div class="col-lg">Risk Reward Ratio</div>
+      <div class="col-lg">Total Number Of Shares</div>
+      <div class="col-lg">Total Amount</div>
     </div>
 
-    <app-psrow *ngFor="let row of rows; let i = index;"
-       [ps] = "row" 
-       [index] = "i" 
-       (sendIndex) = "deleteRow($event)"
-       ></app-psrow>
-
-    <br>
-    <button class = "btn btn-default" (click)="calculate()">CALCULATE</button>    
-
+    <app-psrow
+      *ngFor="let row of rows; let i = index"
+      [ps]="row"
+      [index]="i"
+      (rowIndex)="deleteRow($event)"
+      (entPrc)="entryPriceUpdated($event,i)"
+      (stplos)="stopLossUpdated($event,i)"
+    ></app-psrow>
+  </div>
 </div>
