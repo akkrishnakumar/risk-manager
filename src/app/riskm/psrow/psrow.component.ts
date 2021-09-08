@@ -23,11 +23,11 @@ export class PsrowComponent implements OnInit {
   }
 
   updateEntryPrice(event){
-    this.entPrc.emit(event.target.value)
+    this.entPrc.emit(parseInt(event.target.value))
   }
 
   updateStopLoss(event){
-    this.stplos.emit(event.target.value)
+    this.stplos.emit(parseInt(event.target.value))
   }
 
 }

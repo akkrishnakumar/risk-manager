@@ -77,8 +77,7 @@ export class RiskmComponent implements OnInit {
         ele.total = ele.shares * ele.entryprice;
 
         const diff = ele.entryprice - ele.stoploss;
-        ele.exit = diff * 2;
-        // ele.exit = ele.entryprice
+        ele.exit = diff * 2 + ele.entryprice;
       }
     });
   }
