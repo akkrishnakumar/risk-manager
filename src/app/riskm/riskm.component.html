@@ -1,32 +1,33 @@
 <div class="container">
-  <label>Enter Capital :</label>
-  <input
-    class="form-control input-sm"
-    type="number"
-    [value]="capital"
-    (change)="updateCapital($event)"
-  />
-
-  <!-- <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Enter Capital</mat-label>
-      <input matInput placeholder="Ex. Pizza" value="Sushi">
-    </mat-form-field> -->
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Enter Capital</mat-label>
+    <input
+      type="number"
+      matInput
+      [value]="capital"
+      (change)="updateCapital($event)"
+    />
+  </mat-form-field>
 
   <div class="slide">
     Percentage
     <mat-slide-toggle [checked]="riskType" (change)="toggleRiskType($event)">
       Fixed
     </mat-slide-toggle>
-    <input
-      class="form-control input-sm"
-      type="number"
-      [value]="riskAmt"
-      (change)="updateRiskAmt($event.target.value)"
-    />
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Enter Amount</mat-label>
+      <input
+        type="number"
+        matInput
+        [value]="riskAmt"
+        (change)="updateRiskAmt($event.target.value)"
+      />
+    </mat-form-field>
   </div>
 
-  <i class="add bi bi-plus-circle-fill" (click)="addRow()"></i>
-  <br /><br />
+  <button mat-icon-button color = "primary" class="add" (click)="addRow()">
+    <mat-icon>add_circle</mat-icon>
+  </button>
 
   <div class="container">
     <div class="row">
@@ -46,8 +47,16 @@
       [ps]="row"
       [index]="i"
       (rowIndex)="deleteRow($event)"
-      (entPrc)="entryPriceUpdated($event,i)"
-      (stplos)="stopLossUpdated($event,i)"
+      (entPrc)="entryPriceUpdated($event, i)"
+      (stplos)="stopLossUpdated($event, i)"
     ></app-psrow>
   </div>
+
+  <button>
+    buy
+  </button>
+
+  <button>
+    sell
+  </button>
 </div>

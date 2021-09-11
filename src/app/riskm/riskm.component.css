@@ -1,11 +1,28 @@
-.add{
-    display: flex;
-    justify-content: flex-end;
+.add {
+  margin: 25px 0;
 }
-.slide{
-    white-space: pre;
-    margin: 10px 0;
+
+.slide {
+  display: block;
+  /* white-space: pre; */
+  margin: 10px 0;
 }
-.entry{
-    margin : 10px 0;
+
+.entry {
+  margin: 10px 0;
+}
+
+.example-full-width {
+  margin: 10px 0;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.slide .example-full-width {
+  margin: 10px 0;
+  display: block;
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
