@@ -14,6 +14,10 @@ import { AppComponent } from './app.component';
 import { RiskmComponent } from './riskm/riskm.component';
 import { HeaderComponent } from './header/header.component';
 import { PsrowComponent } from './riskm/psrow/psrow.component';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
 
 
 @NgModule({
@@ -21,7 +25,8 @@ import { PsrowComponent } from './riskm/psrow/psrow.component';
     AppComponent,
     RiskmComponent,
     HeaderComponent,
-    PsrowComponent
+    PsrowComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +38,10 @@ import { PsrowComponent } from './riskm/psrow/psrow.component';
     MatToolbarModule,
     MatTableModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    LayoutModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
