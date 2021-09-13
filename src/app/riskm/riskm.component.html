@@ -25,7 +25,7 @@
     </mat-form-field>
   </div>
 
-  <button mat-icon-button color = "primary" class="add" (click)="addRow()">
+  <button mat-icon-button color="primary" class="add" (click)="addRow()" matTooltip="Add Row">
     <mat-icon>add_circle</mat-icon>
   </button>
 
@@ -37,9 +37,11 @@
       <div class="col-lg">Entry Price</div>
       <div class="col-lg">Stop Loss</div>
       <div class="col-lg">Exit</div>
-      <div class="col-lg">Risk Reward Ratio</div>
-      <div class="col-lg">Total Number Of Shares</div>
+      <div class="col-lg">RR Ratio</div>
+      <div class="col-lg">Quantity</div>
       <div class="col-lg">Total Amount</div>
+      <div class="col-lg">Action</div>
+      <div class="col-lg"></div>
     </div>
 
     <app-psrow
@@ -51,12 +53,4 @@
       (stplos)="stopLossUpdated($event, i)"
     ></app-psrow>
   </div>
-
-  <button>
-    buy
-  </button>
-
-  <button>
-    sell
-  </button>
 </div>

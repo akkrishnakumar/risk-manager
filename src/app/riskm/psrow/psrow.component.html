@@ -36,9 +36,17 @@
   <div class="col-lg">
     {{ ps.total | currency: "INR" }}
   </div>
-</div>
-<div class="trash">
-  <button mat-icon-button color = "warn" (click)="sendDelete()">
-    <mat-icon>delete_forever</mat-icon>
-  </button>
+  <div class="col-lg">
+    <button mat-icon-button>
+      <mat-icon aria-label="buy" matTooltip="Buy">trending_up</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon aria-label="sell" matTooltip="Sell">trending_down</mat-icon>
+    </button>
+  </div>
+  <div class="col-lg">
+    <button mat-icon-button color="warn" matTooltip="Delete Row" (click)="sendDelete()">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+  </div>
 </div>

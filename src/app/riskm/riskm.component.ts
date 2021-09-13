@@ -29,6 +29,7 @@ export class RiskmComponent implements OnInit {
 
   deleteRow(sendIndex: number) {
     this.rows.splice(sendIndex, 1);
+    this.reCalculate();
   }
 
   toggleRiskType(event) {
