@@ -13,6 +13,7 @@ export class PsrowComponent implements OnInit {
   @Output() rowIndex = new EventEmitter<number>();
   @Output() entPrc = new EventEmitter<number>();
   @Output() stplos = new EventEmitter<number>();
+  @Output() holdP = new EventEmitter<number>()
 
   constructor() {}
 
@@ -28,5 +29,9 @@ export class PsrowComponent implements OnInit {
 
   updateStopLoss(event) {
     this.stplos.emit(parseInt(event.target.value));
+  }
+
+  sendHoldings(){
+    this.holdP.emit(this.index)
   }
 }

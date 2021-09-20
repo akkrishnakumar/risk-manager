@@ -19,6 +19,7 @@ import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { HoldingsComponent } from './holdings/holdings.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { MatListModule } from '@angular/material/list';
     RiskmComponent,
     HeaderComponent,
     PsrowComponent,
-    NavComponent
+    NavComponent,
+    HoldingsComponent
   ],
   imports: [
     BrowserModule,

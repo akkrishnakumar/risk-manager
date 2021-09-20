@@ -61,6 +61,10 @@ export class RiskmComponent implements OnInit {
     this.reCalculate();
   }
 
+  holdings(hol : number){
+    console.log(hol);
+  }
+
   reCalculate() {
     this.rows.map((ele, i, arr) => {
       if (i === 0) ele.capital = this.capital;

@@ -37,7 +37,7 @@
     {{ ps.total | currency: "INR" }}
   </div>
   <div class="col-lg">
-    <button mat-icon-button>
+    <button mat-icon-button (click)="sendHoldings()">
       <mat-icon aria-label="buy" matTooltip="Buy">trending_up</mat-icon>
     </button>
     <button mat-icon-button>
