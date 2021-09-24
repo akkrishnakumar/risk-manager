@@ -1,6 +1,5 @@
-import { element } from 'protractor';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { RiskserviceService } from './../riskservice.service';
+import { Component, OnInit } from '@angular/core';
 import { PositionSizing } from '../models/risk-data';
 
 @Component({
@@ -10,11 +9,12 @@ import { PositionSizing } from '../models/risk-data';
 })
 export class RiskmComponent implements OnInit {
   rows: Array<PositionSizing> = [];
+  holdRow: Array<PositionSizing> = [];
   capital: number = 100000;
   riskType: boolean = false; // when false -> percent, when true -> fixed amt
   riskAmt: number = 2;
 
-  constructor() {}
+  constructor(private riskService : RiskserviceService) {}
 
   ngOnInit(): void {
     this.addRow();
@@ -61,8 +61,11 @@ export class RiskmComponent implements OnInit {
     this.reCalculate();
   }
 
-  holdings(hol : number){
-    console.log(hol);
+  holdings(hol: number) {
+    const holrow = this.rows.find((_, index) => index === hol);
+    this.holdRow.push(holrow);
+    this.riskService.add(holrow)
+    // console.log(holrow);
   }
 
   reCalculate() {

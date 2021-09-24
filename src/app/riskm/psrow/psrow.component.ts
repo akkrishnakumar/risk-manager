@@ -13,7 +13,7 @@ export class PsrowComponent implements OnInit {
   @Output() rowIndex = new EventEmitter<number>();
   @Output() entPrc = new EventEmitter<number>();
   @Output() stplos = new EventEmitter<number>();
-  @Output() holdP = new EventEmitter<number>()
+  @Output() holdP = new EventEmitter<number>();
 
   constructor() {}
 
@@ -31,7 +31,7 @@ export class PsrowComponent implements OnInit {
     this.stplos.emit(parseInt(event.target.value));
   }
 
-  sendHoldings(){
-    this.holdP.emit(this.index)
+  sendHoldings() {
+    this.holdP.emit(this.index);
   }
 }
