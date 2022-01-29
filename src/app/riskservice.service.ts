@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class RiskserviceService {
-  holdings: PositionSizing[] = [];
+  private holdings: Array<PositionSizing> = [];
+  private rows: Array<PositionSizing> = [];
 
   constructor() {}
 
@@ -15,5 +16,23 @@ export class RiskserviceService {
 
   getHoldings(): PositionSizing[] {
     return this.holdings;
+  }
+
+  getPositionSizings(): PositionSizing[] {
+    return this.rows
+  }
+
+  addNewPositionSizing(capital: number) {
+    this.rows.push(
+      new PositionSizing('A', 0, 0, 0, 0, 2, 0, capital, 0, 0)
+    )
+  }
+
+  updatePositionSizing(positionSizing: PositionSizing[]) {
+    this.rows = positionSizing
+  }
+
+  clear(){
+    this.holdings = []
   }
 }

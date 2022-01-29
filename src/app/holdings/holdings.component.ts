@@ -10,18 +10,17 @@ import { RiskserviceService } from '../riskservice.service';
 export class HoldingsComponent implements OnInit {
   constructor(private riskService: RiskserviceService) {}
 
-  holds: PositionSizing[] = [];
+  holdings: Array<PositionSizing> = [];
 
   ngOnInit(): void {
-    this.getHoldings;
+    this.getHoldings()
   }
 
   getHoldings() {
-    this.holds = this.riskService.getHoldings();
-    console.log(this.holds);
+    this.holdings = this.riskService.getHoldings();
   }
 
   clear() {
-    this.holds = [];
+    this.riskService.clear()
   }
 }

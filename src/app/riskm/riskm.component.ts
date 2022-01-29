@@ -9,21 +9,18 @@ import { PositionSizing } from '../models/risk-data';
 })
 export class RiskmComponent implements OnInit {
   rows: Array<PositionSizing> = [];
-  holdRow: Array<PositionSizing> = [];
   capital: number = 100000;
   riskType: boolean = false; // when false -> percent, when true -> fixed amt
   riskAmt: number = 2;
 
-  constructor(private riskService : RiskserviceService) {}
+  constructor(private riskService: RiskserviceService) {}
 
   ngOnInit(): void {
-    this.addRow();
+    this.rows = this.riskService.getPositionSizings();
   }
 
   addRow() {
-    this.rows.push(
-      new PositionSizing('A', 0, 0, 0, 0, 2, 0, this.capital, 0, 0)
-    );
+    this.riskService.addNewPositionSizing(this.capital);
     this.reCalculate();
   }
 
@@ -63,30 +60,33 @@ export class RiskmComponent implements OnInit {
 
   holdings(hol: number) {
     const holrow = this.rows.find((_, index) => index === hol);
-    this.holdRow.push(holrow);
-    this.riskService.add(holrow)
-    // console.log(holrow);
+    this.riskService.add(holrow);
+    this.rows.splice(hol, 1);
+    this.reCalculate();
   }
 
   reCalculate() {
-    this.rows.map((ele, i, arr) => {
-      if (i === 0) ele.capital = this.capital;
+    const updatedRows = this.rows.map((row, i, arr) => {
+      if (i === 0) row.capital = this.capital;
       else {
-        const prevEle = arr[i - 1];
-        ele.capital = prevEle.capital - prevEle.total;
+        const prevRow = arr[i - 1];
+        row.capital = prevRow.capital - prevRow.total;
       }
 
       this.riskType == true
-        ? (ele.risk = this.riskAmt)
-        : (ele.risk = this.capital * (this.riskAmt / 100));
+        ? (row.risk = this.riskAmt)
+        : (row.risk = this.capital * (this.riskAmt / 100));
 
-      if (ele.entryprice != 0 && ele.stoploss != 0) {
-        ele.shares = ele.risk / (ele.entryprice - ele.stoploss);
-        ele.total = ele.shares * ele.entryprice;
+      if (row.entryprice != 0 && row.stoploss != 0) {
+        row.shares = row.risk / (row.entryprice - row.stoploss);
+        row.total = row.shares * row.entryprice;
 
-        const diff = ele.entryprice - ele.stoploss;
-        ele.exit = diff * 2 + ele.entryprice;
+        const diff = row.entryprice - row.stoploss;
+        row.exit = diff * 2 + row.entryprice;
+
+        return row;
       }
     });
+    this.riskService.updatePositionSizing(updatedRows);
   }
 }

@@ -1,4 +1,32 @@
-<p>holdings works!</p>
-<button (click)="getHoldings()">yes</button>
-
-<button (click)="clear()">no</button>
+<div class="holdings row" *ngFor="let holding of holdings">
+  <div class="col-lg">
+    {{ holding.tickers }}
+  </div>
+  <div class="col-lg">
+    {{ holding.capital | currency: "INR" }}
+  </div>
+  <div class="col-lg">
+    {{ holding.risk | currency: "INR" }}
+  </div>
+  <div class="col-lg">
+    {{ holding.entryprice | currency: "INR" }}
+  </div>
+  <div class="col-lg">
+    {{ holding.stoploss | currency: "INR" }}
+  </div>
+  <div class="col-lg">
+    {{ holding.exit | currency: "INR" }}
+  </div>
+  <div class="col-lg">
+    {{ holding.riskreward }}
+  </div>
+  <div class="col-lg">
+    {{ holding.shares }}
+  </div>
+  <div class="col-lg">
+    {{ holding.total | currency: "INR" }}
+  </div>
+  <div class="col-lg">
+    <button (click)="clear()">clear</button>
+  </div>
+</div>
